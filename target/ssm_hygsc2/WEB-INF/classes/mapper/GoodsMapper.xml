@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.GoodsMapper">
+         <select id="list" resultType="Goods">
+             select * from goods
+             <if test="start!=null and count!=null">
+                  limit #{start},#{count}
+             </if>
+         </select>
+
+
+         <insert id="add" parameterType="Goods">
+             insert into goods (goodname,price) values (#{goodname},#{price})
+         </insert>
+
+         <delete id="delete" parameterType="int">
+             delete from goods where goodsid =#{goodsid}
+         </delete>
+
+         <select id="get" parameterType="_int" resultType="Goods">
+             select * from goods where goodsid =#{goodsid}
+         </select>
+
+
+         <update id="update" parameterType="Goods">
+             update goods set goodname =#{goodname},price =#{price} where goodsid =#{goodsid}
+         </update>
+
+
+</mapper>
